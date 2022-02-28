@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>My Appointments</title>
+
+<style type="text/css">
+
+    div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+button{
+
+padding:3px;
+margin:3px;
+}
+    h2{
+	text-align:center;
+	color: indianred;
+	font-family:Arial,serif,cooper;
+	font-weight:bolder;
+	text-decoration-color: indianred;
+	}
+	
+	    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #930;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #790;
+}
+    </style>
+    
+
+</head>
+<body bgcolor="olive">
+<center>
+<h2>My appointments</h2>
+<ul>
+  <li><a th:href="@{/patient/myprofile/{id}(id=${patient.id})}">Profile</a></li>
+  <li><a th:href="@{/patient/{id}/appointment(id=${patient.id})}">Book Appointment</a></li>
+  <li><a th:href="@{/patient/{id}/myappointments(id=${patient.id})}">My Appointments</a></li>
+  <li><a th:href="@{/}">Logout</a></li>
+  </ul>
+  <table>
+    <thead>
+    <tr>
+    <td>Name</td>
+      <td>Date</td>
+      <td>Department</td>
+      <td>Status</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appoint: ${appointments}">
+      <td th:text="${appoint.patientName}"></td>
+      <td th:text="${appoint.date}"></td>
+      <td th:text="${appoint.specialist}"></td>
+      <td th:text="${appoint.status}"></td>
+    </tr>
+    </tbody>
+  </table>
+</center>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment</title>
+<style type="text/css">
+    div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+button{
+
+padding:3px;
+margin:3px;
+}
+h2{
+	text-align:center;
+	color: navy;
+	font-family:Arial,serif,cooper;
+	font-weight:bolder;
+	text-decoration-color: navy;
+	}
+	    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #935;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #795;
+}
+    </style>
+    
+</head>
+<body bgcolor="steelblue">
+<center>
+<h2>Book appointment</h2>
+<ul>
+  <li><a th:href="@{/patient/myprofile/{id}(id=${patient.id})}">Profile</a></li>
+  <li><a th:href="@{/patient/{id}/appointment(id=${patient.id})}">Book Appointment</a></li>
+  <li><a th:href="@{/patient/{id}/myappointments(id=${patient.id})}">My Appointments</a></li>
+  <li><a th:href="@{/}">Logout</a></li>
+  </ul>
+ <br>
+  <h4>Book Appointment</h4>
+  <form th:action="@{/patient/{id}/appointment/save(id=${id})}" method="post" th:object="${appointment}" >
+    <div class="form-group">
+      <label for="patientName">Patient Name</label>
+      <input type="text" class="form-control" id="patientName"  placeholder="Enter Patient Name" th:field ="*{patientName}">
+    </div>
+    <div class="form-group">
+      <label for="number">Mobile Number</label>
+      <input type="number" class="form-control" id="number"  placeholder="Enter Mobile Number" th:field ="*{mobileNumber}">
+    </div>
+    <div class="form-group">
+      <label for="specialist">Specialist</label>
+      <select id="specialist" th:field="*{specialist}">
+        <option th:value="ENT" th:text="ENT"></option>
+        <option th:value="Cardiologist" th:text="Cardiologist"></option>
+        <option th:value="General" th:text="General"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" class="form-control" id="date" th:field ="*{date}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</center>
+</body>
+</html>
